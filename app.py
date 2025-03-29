@@ -3,9 +3,20 @@ from discord.ext import commands
 import dotenv
 import os
 import traceback
+from flask import Flask
+import threading
+
+app = Flask(__name__)
+@app.route('/')
+def home():
+    return f"Le bot MultiTools est actif"
+
+def run_flask():
+    app.run(host='0.0.0.0', port=8080)
+
+threading.Thread(target=run_flask).start()
 
 dotenv.load_dotenv()
-
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 # Validate environment variables
@@ -38,7 +49,7 @@ class Seemu(commands.Bot):
         await self.tree.sync()  # Syncing the command tree
 
     async def on_ready(self):
-        # Changer le message d'activité avec un style "hacker" et terminal
+
         activity = discord.Game(
             name="⏳ Hacking into Discord...",
             details="Décryptage des données...",
