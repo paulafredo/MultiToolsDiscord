@@ -29,6 +29,7 @@ exts = [
     "cogs.sendmessage",
     "cogs.goodbey",
     "cogs.setting",
+    "cogs.word_filter"
 ]
 
 class Seemu(commands.Bot):
