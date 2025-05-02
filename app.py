@@ -12,7 +12,8 @@ def home():
     return f"Le bot MultiTools est actif"
 
 def run_flask():
-    app.run(host='0.0.0.0', port=5001)
+    port = int(os.environ.get("PORT", 5001))
+    app.run(host='0.0.0.0', port=port)
 
 threading.Thread(target=run_flask).start()
 
